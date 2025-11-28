@@ -113,7 +113,7 @@ export function ContentCard({ content, viewMode = 'grid', onContentClick }: Cont
                                     {content.type === 'document' ? content.format?.toUpperCase() : formatDuration(content.duration)}
                                 </Badge>
                                 <span className="text-xs">
-                                    {formatFileSize(content.size || 0)}
+                                    {formatFileSize(content.fileSize || 0)}
                                 </span>
                             </div>
                             <Button size="sm" onClick={handleDownloadClick}>

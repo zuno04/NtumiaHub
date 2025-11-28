@@ -1,8 +1,9 @@
 "use client"
 
 import * as React from "react"
-import { Moon, Sun, Laptop, Palette, Check } from "lucide-react"
+import { Moon, Sun, Laptop, Check } from "lucide-react"
 import { useTheme } from "next-themes"
+import { applyTheme } from "@/lib/theme-utils"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -20,6 +21,11 @@ import {
 export function ThemeSwitcher() {
     const { setTheme, theme } = useTheme()
 
+    const handleThemeChange = (newTheme: string) => {
+        setTheme(newTheme)
+        applyTheme(newTheme)
+    }
+
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -31,17 +37,17 @@ export function ThemeSwitcher() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 <DropdownMenuLabel>Apparence</DropdownMenuLabel>
-                <DropdownMenuItem onClick={() => setTheme("light")}>
+                <DropdownMenuItem onClick={() => handleThemeChange("light")}>
                     <Sun className="mr-2 h-4 w-4" />
                     Clair
                     {theme === 'light' && <Check className="ml-auto h-4 w-4" />}
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("dark")}>
+                <DropdownMenuItem onClick={() => handleThemeChange("dark")}>
                     <Moon className="mr-2 h-4 w-4" />
                     Sombre
                     {theme === 'dark' && <Check className="ml-auto h-4 w-4" />}
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("system")}>
+                <DropdownMenuItem onClick={() => handleThemeChange("system")}>
                     <Laptop className="mr-2 h-4 w-4" />
                     Système
                     {theme === 'system' && <Check className="ml-auto h-4 w-4" />}
@@ -50,23 +56,23 @@ export function ThemeSwitcher() {
                 <DropdownMenuSeparator />
 
                 <DropdownMenuLabel>Thèmes</DropdownMenuLabel>
-                <DropdownMenuItem onClick={() => setTheme("brand")}>
-                    <div className="mr-2 h-4 w-4 rounded-full bg-[hsl(210,100%,50%)]" />
+                <DropdownMenuItem onClick={() => handleThemeChange("brand")}>
+                    <div className="mr-2 h-4 w-4 rounded-full bg-blue-600" />
                     NtumiaHub (Défaut)
                     {theme === 'brand' && <Check className="ml-auto h-4 w-4" />}
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("ocean")}>
-                    <div className="mr-2 h-4 w-4 rounded-full bg-[hsl(240,50%,50%)]" />
+                <DropdownMenuItem onClick={() => handleThemeChange("ocean")}>
+                    <div className="mr-2 h-4 w-4 rounded-full bg-blue-800" />
                     Océan
                     {theme === 'ocean' && <Check className="ml-auto h-4 w-4" />}
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("sunset")}>
-                    <div className="mr-2 h-4 w-4 rounded-full bg-[hsl(30,90%,60%)]" />
+                <DropdownMenuItem onClick={() => handleThemeChange("sunset")}>
+                    <div className="mr-2 h-4 w-4 rounded-full bg-orange-600" />
                     Coucher de soleil
                     {theme === 'sunset' && <Check className="ml-auto h-4 w-4" />}
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("high-contrast")}>
-                    <div className="mr-2 h-4 w-4 rounded-full bg-black border border-white" />
+                <DropdownMenuItem onClick={() => handleThemeChange("high-contrast")}>
+                    <div className="mr-2 h-4 w-4 rounded-full bg-black border border-gray-300" />
                     Contraste Élevé
                     {theme === 'high-contrast' && <Check className="ml-auto h-4 w-4" />}
                 </DropdownMenuItem>

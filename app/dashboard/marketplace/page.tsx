@@ -27,6 +27,7 @@ export default function MarketplacePage() {
     const [selectedCategories, setSelectedCategories] = useState<string[]>([])
     const [selectedContent, setSelectedContent] = useState<Content | null>(null)
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [activeTab, setActiveTab] = useState('all')
 
     useEffect(() => {
         const loadContent = async () => {
@@ -46,20 +47,21 @@ export default function MarketplacePage() {
         const matchesSearch = content.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                             content.description.toLowerCase().includes(searchQuery.toLowerCase())
         const matchesType = selectedTypes.length === 0 || selectedTypes.includes(content.type)
-        const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(content.category)
+        const matchesCategory = selectedCategories.length === 0 || 
+                              selectedCategories.some(cat => content.categories?.includes(cat))
         return matchesSearch && matchesType && matchesCategory
     })
 
     const sortedContents = [...filteredContents].sort((a, b) => {
         switch (sortBy) {
             case 'recent':
-                return new Date(b.uploadDate).getTime() - new Date(a.uploadDate).getTime()
+                return new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime()
             case 'popular':
                 return b.downloads - a.downloads
             case 'name':
                 return a.title.localeCompare(b.title)
             case 'size':
-                return b.size - a.size
+                return (b.fileSize || 0) - (a.fileSize || 0)
             default:
                 return 0
         }
@@ -268,11 +270,21 @@ export default function MarketplacePage() {
                     {/* Results Count */}
                     <div className="flex items-center justify-between">
                         <p className="text-sm text-muted-foreground">
-                            {sortedContents.length} résultat{sortedContents.length !== 1 ? 's' : ''} trouvé{sortedContents.length !== 1 ? 's' : ''}
+                            {(() => {
+                                const filteredByTab = sortedContents.filter(content => activeTab === 'all' || content.type === activeTab)
+                                return `${filteredByTab.length} résultat${filteredByTab.length !== 1 ? 's' : ''} trouvé${filteredByTab.length !== 1 ? 's' : ''}`
+                            })()} 
+                            {activeTab !== 'all' && (
+                                <span className="ml-2 text-xs bg-secondary px-2 py-1 rounded">
+                                    {activeTab === 'video' ? 'Vidéos' : 
+                                     activeTab === 'audio' ? 'Audio' :
+                                     activeTab === 'document' ? 'Documents' : 'Publicités'}
+                                </span>
+                            )}
                         </p>
                     </div>
 
-                    <Tabs defaultValue="all" className="space-y-4">
+                    <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
                         <TabsList>
                             <TabsTrigger value="all">Tout</TabsTrigger>
                             <TabsTrigger value="video">Vidéos</TabsTrigger>
@@ -281,7 +293,7 @@ export default function MarketplacePage() {
                             <TabsTrigger value="ad">Publicités</TabsTrigger>
                         </TabsList>
 
-                        <TabsContent value="all" className="space-y-4">
+                        <TabsContent value={activeTab} className="space-y-4">
                             {isLoading ? (
                                 <div className={viewMode === 'grid' 
                                     ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
@@ -302,7 +314,9 @@ export default function MarketplacePage() {
                                     ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
                                     : "space-y-4"
                                 }>
-                                    {sortedContents.map((content) => (
+                                    {sortedContents
+                                        .filter(content => activeTab === 'all' || content.type === activeTab)
+                                        .map((content) => (
                                         <ContentCard 
                                             key={content.id} 
                                             content={content} 
@@ -313,7 +327,7 @@ export default function MarketplacePage() {
                                 </div>
                             )}
                             
-                            {!isLoading && sortedContents.length === 0 && (
+                            {!isLoading && sortedContents.filter(content => activeTab === 'all' || content.type === activeTab).length === 0 && (
                                 <div className="text-center py-12">
                                     <p className="text-muted-foreground">Aucun contenu trouvé avec ces critères.</p>
                                     <Button variant="outline" onClick={clearFilters} className="mt-4">

@@ -1,11 +1,11 @@
 "use client"
 
-import { Search, User as UserIcon } from "lucide-react"
-import { Input } from "@/components/ui/input"
+import { User as UserIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ThemeSwitcher } from "@/components/theme-switcher"
 import { NotificationsDropdown } from "@/components/notifications-dropdown"
 import { MobileSidebar } from "@/components/sidebar"
+import { GlobalSearch } from "@/components/global-search"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -33,11 +33,7 @@ export function Topbar() {
                 <MobileSidebar />
 
                 <div className="ml-auto flex items-center space-x-4">
-                    <div className="relative hidden md:block w-96">
-                        <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-                        <Input placeholder="Rechercher du contenu..." className="pl-8" />
-                    </div>
-
+                    <GlobalSearch />
                     <ThemeSwitcher />
 
                     <NotificationsDropdown />
