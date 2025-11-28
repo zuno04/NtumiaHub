@@ -216,15 +216,17 @@ export default function SettingsPage() {
                                             </h4>
                                             <div className="space-y-2">
                                                 {[
-                                                    { tz: selectedTimezone, label: 'Votre fuseau horaire', isSelected: true },
-                                                    { tz: 'UTC', label: 'UTC (Temps Universel)' },
-                                                    { tz: 'Africa/Douala', label: 'Douala, Cameroun' },
-                                                    { tz: 'Africa/Lagos', label: 'Lagos, Nigeria' },
-                                                    { tz: 'Africa/Cairo', label: 'Le Caire, Égypte' },
-                                                    { tz: 'Africa/Nairobi', label: 'Nairobi, Kenya' }
-                                                ].map(({ tz, label, isSelected }) => (
+                                                    { tz: selectedTimezone, label: 'Votre fuseau horaire', isSelected: true, key: 'selected' },
+                                                    { tz: 'UTC', label: 'UTC (Temps Universel)', key: 'utc' },
+                                                    { tz: 'Africa/Douala', label: 'Douala, Cameroun', key: 'douala' },
+                                                    { tz: 'Africa/Lagos', label: 'Lagos, Nigeria', key: 'lagos' },
+                                                    { tz: 'Africa/Cairo', label: 'Le Caire, Égypte', key: 'cairo' },
+                                                    { tz: 'Africa/Nairobi', label: 'Nairobi, Kenya', key: 'nairobi' }
+                                                ].filter((item, index, arr) => 
+                                                    index === 0 || !arr.slice(0, index).some(prev => prev.tz === item.tz)
+                                                ).map(({ tz, label, isSelected, key }) => (
                                                     <div 
-                                                        key={tz} 
+                                                        key={key} 
                                                         className={`flex justify-between items-center p-2 rounded transition-colors ${
                                                             isSelected ? 'bg-primary/10 border border-primary/20' : 'hover:bg-muted/50'
                                                         }`}
