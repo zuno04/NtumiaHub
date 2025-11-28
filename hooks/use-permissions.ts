@@ -1,15 +1,16 @@
 import { UserRole } from '@/types'
 
-const rolePermissions = {
-  admin: ['read', 'write', 'delete', 'manage_users', 'manage_content', 'upload', 'moderate'],
-  moderator: ['read', 'write', 'upload', 'manage_content', 'moderate'],
-  creator: ['read', 'write', 'upload'],
-  viewer: ['read']
-} as const
+type Permission = 'read' | 'write' | 'delete' | 'manage_users' | 'manage_content' | 'upload' | 'moderate';
 
-export function usePermissions(userRole: 'admin' | 'moderator' | 'creator' | 'viewer') {
+const rolePermissions: Record<UserRole, readonly Permission[]> = {
+  admin: ['read', 'write', 'delete', 'manage_users', 'manage_content', 'upload', 'moderate'],
+  editor: ['read', 'write', 'upload', 'manage_content'],
+  viewer: ['read']
+};
+
+export function usePermissions(userRole: UserRole) {
   const permissions = rolePermissions[userRole] || []
-  
+
   return {
     canRead: permissions.includes('read'),
     canWrite: permissions.includes('write'),

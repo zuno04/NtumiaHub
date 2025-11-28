@@ -1,0 +1,164 @@
+​CAHIER DES CHARGES :​
+​Plateforme collaborative inter-médias​
+
+🔹 1. Objectif du projet​
+​
+
+​Mettre​ ​en​ ​place​ ​une​ ​plateforme​ ​web​ ​sécurisée​ ​permettant​ ​aux​ ​organes​ ​de​ ​presse,​ ​radios,​
+​télévisions,​ ​web​ ​médias​ ​de​ ​s’échanger​ ​des​ ​contenus​ ​(vidéos,​ ​audios,​ ​textes,​ ​spots),​ ​tout​ ​en​
+​maintenant une traçabilité des partages et une gestion des accès par validation administrative.​
+
+🔹 2. Fonctionnalités principales​
+​
+
+​2.1. Inscription et validation​
+​●​ ​Interface d’inscription pour les médias (nom, type, responsable, contacts,​
+​justificatifs…).​
+​●​ ​Validation manuelle par un administrateur (back-office).​
+​●​ ​Possibilité d’activer/désactiver un compte média à tout moment.​
+
+​2.2. Gestion des comptes médias​
+​●​ ​Chaque média dispose d’un tableau de bord personnalisé.​
+​●​ ​Rôle :Media.​
+
+​●​ ​Possibilité d’ajouter plusieurs utilisateurs sous un même média (gestion​
+​multi-utilisateur).​
+
+​2.3. Dépôt de contenu​
+​●​ ​Upload de :​
+​○​ ​Vidéos (.mp4, .mov…)​
+​○​ ​Audios (.mp3, .wav…)​
+​○​ ​Textes (.txt, .pdf…)​
+​○​ ​Spots (vidéos ou audios publicitaires)​
+
+​●​ ​Métadonnées obligatoires : titre, description, type de contenu, date, durée,​
+​longue, droits/licence​​.​
+
+​2.4. Téléchargement & consommation​
+​●​ ​Liste des contenus disponibles en accès public (ou selon les droits définis).​
+​●​ ​Moteur de recherche et filtres : par type, média, date, format, langue.​
+​●​ ​Historique des téléchargements (qui, quand, quoi).​
+
+​●​ ​Système d’approbation préalable pour certains contenus (optionnel).​
+
+​2.5. Suivi des interactions​
+​●​ ​Historique d’upload et de download pour chaque média.​
+​●​ ​Statistiques : top contributeurs, top contenus consultés ou téléchargés.​
+​●​ ​Notation ou feedback possible par les médias consommateurs.​
+
+​2.6. Notifications & alertes​
+​●​ ​Notification à un média quand son contenu est téléchargé.​
+​●​ ​Alerte aux admins lors d’un nouvel upload ou d’une demande d’inscription.​
+​●​ ​Emailing / in-app notifications.​
+
+​2.7. Administration​
+​●​ ​Gestion des comptes médias.​
+​●​ ​Gestion des types de contenus, catégories.​
+​●​ ​Logs d’activité.​
+​●​ ​Paramètres de la plateforme (règlement, quota, droits, etc.).​
+
+🔹 3. Contraintes techniques​
+​
+
+​Élément​
+
+​Détail​
+
+​Frontend​
+
+​Next.js avec React​
+
+​Backend​
+
+​NestJS​
+
+​Base de données​
+
+​MongoDB​
+
+​Hébergement​
+
+​Contabo (VPS ou cloud selon volume)​
+
+​Stockage des fichiers​
+
+​Système de stockage externe​​DinoVault​
+
+​API​
+
+​REST (JSON), sécurisées avec JWT​
+
+​Authentification​
+
+​JWT + ACL selon rôle​
+
+​Responsive Design​
+
+​Oui (mobile/tablette inclus)​
+
+🔹 4. Modules complémentaires à prévoir​
+​
+
+✅
+
+​●​ ​ ​​Système de licence en interne : gratuit, payant,​​privé, public.​
+
+✅ Module de monétisation (futur) : facturation entre médias.​
+​●​ ​✅ Support multilingue (français / anglais)​
+​●​ ​✅ Module de versioning de contenu (optionnel)​
+​●​ ​
+
+🔹 5. Utilisateurs cibles​
+​
+
+​●​ ​Médias TV​
+​●​ ​Web radios / radios locales​
+​●​ ​Presse écrite numérique​
+​●​ ​WebTV​
+​●​ ​Influenceurs ou producteurs de contenus agréés (optionnel à activer plus tard)​
+
+🔹 6. Sécurité & confidentialité​
+​
+
+​●​ ​Données cryptées en base pour les accès sensibles.​
+​●​ ​Politique RGPD (ou équivalent local).​
+​●​ ​Historique des accès et activités consultables.​
+​●​ ​Chaque contenu reste propriété de son média source.​
+
+🔹 7. Planning estimatif (MVP)​
+​
+
+​Étape​
+
+​Durée estimée​
+
+​Spécification détaillée​
+
+​1 semaine​
+
+​Design UI/UX​
+
+​1 semaine​
+
+​Dev backend (API, logique)​
+
+​3 semaines​
+
+​Dev frontend​
+
+​3 semaines​
+
+​Intégration, test, déploiement​ ​2 semaines​
+​Total​
+
+​10 semaines​
+
+🔹 8. Livrables​
+​
+
+​●​ ​Documentation technique et d’installation.​
+​●​ ​Interface d’administration opérationnelle.​
+​●​ ​Interface utilisateur responsive.​
+​●​ ​Cahier de test & validation.​
+
+
