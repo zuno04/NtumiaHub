@@ -1,6 +1,6 @@
 "use client"
 
-import { User as UserIcon } from "lucide-react"
+import { User as UserIcon, ShieldCheck } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ThemeSwitcher } from "@/components/theme-switcher"
 import { LanguageSwitcher } from "@/components/language-switcher"
@@ -17,12 +17,13 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useAuthStore, useLanguageStore } from "@/lib/store"
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
 import { getTranslation } from "@/lib/i18n"
 
 export function Topbar() {
     const { user, logout } = useAuthStore()
     const router = useRouter()
+    const pathname = usePathname()
     const { locale } = useLanguageStore()
     const t = getTranslation(locale)
 
@@ -31,12 +32,26 @@ export function Topbar() {
         router.push("/")
     }
 
+    // Show admin panel button if user is admin and not in admin area
+    const showAdminButton = user?.role === 'admin' && !pathname.startsWith('/admin')
+
     return (
         <div className="border-b">
             <div className="flex h-16 items-center px-4">
                 <MobileSidebar />
 
                 <div className="ml-auto flex items-center space-x-4">
+                    {showAdminButton && (
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => router.push('/admin')}
+                            className="gap-2"
+                        >
+                            <ShieldCheck className="h-4 w-4" />
+                            {locale === 'fr' ? 'Panneau Admin' : 'Admin Panel'}
+                        </Button>
+                    )}
                     <GlobalSearch />
                     <LanguageSwitcher />
                     <ThemeSwitcher />

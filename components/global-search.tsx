@@ -56,9 +56,19 @@ export function GlobalSearch() {
         return () => clearTimeout(debounce)
     }, [query])
 
+    const [pathname, setPathname] = useState("")
+
+    useEffect(() => {
+        setPathname(window.location.pathname)
+    }, [])
+
     const handleResultClick = (content: Content) => {
         setOpen(false)
-        router.push(`/dashboard/marketplace?content=${content.id}`)
+        if (window.location.pathname.startsWith('/admin')) {
+            router.push(`/admin/content/${content.id}`)
+        } else {
+            router.push(`/dashboard/marketplace?content=${content.id}`)
+        }
     }
 
     const getIcon = (type: string) => {
@@ -77,9 +87,9 @@ export function GlobalSearch() {
             <DialogTrigger asChild>
                 <div className="relative w-96 hidden md:block">
                     <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-                    <Input 
-                        placeholder="Rechercher du contenu... (Ctrl+K)" 
-                        className="pl-8 cursor-pointer" 
+                    <Input
+                        placeholder="Rechercher du contenu... (Ctrl+K)"
+                        className="pl-8 cursor-pointer"
                         readOnly
                     />
                 </div>
@@ -98,20 +108,20 @@ export function GlobalSearch() {
                         />
                     </div>
                 </div>
-                
+
                 <div className="max-h-96 overflow-y-auto">
                     {loading && (
                         <div className="p-4 text-center text-muted-foreground">
                             Recherche en cours...
                         </div>
                     )}
-                    
+
                     {!loading && query.length >= 2 && results.length === 0 && (
                         <div className="p-4 text-center text-muted-foreground">
                             Aucun résultat trouvé
                         </div>
                     )}
-                    
+
                     {results.map((content) => (
                         <div
                             key={content.id}
@@ -141,7 +151,7 @@ export function GlobalSearch() {
                         </div>
                     ))}
                 </div>
-                
+
                 {query.length < 2 && (
                     <div className="p-4 text-center text-muted-foreground">
                         Tapez au moins 2 caractères pour rechercher

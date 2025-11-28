@@ -3,7 +3,7 @@ import { UserRole } from '@/types'
 type Permission = 'read' | 'write' | 'delete' | 'manage_users' | 'manage_content' | 'upload' | 'moderate';
 
 const rolePermissions: Record<UserRole, readonly Permission[]> = {
-  admin: ['read', 'write', 'delete', 'manage_users', 'manage_content', 'upload', 'moderate'],
+  admin: ['read', 'moderate'], // Admins can only view and moderate in dashboard context
   editor: ['read', 'write', 'upload', 'manage_content'],
   viewer: ['read']
 };

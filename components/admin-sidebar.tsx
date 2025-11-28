@@ -12,7 +12,8 @@ import {
     Settings,
     LogOut,
     FileText,
-    AlertTriangle
+    AlertTriangle,
+    ShoppingBag
 } from "lucide-react"
 import { useAuthStore } from "@/lib/store"
 import { useRouter } from "next/navigation"
@@ -48,6 +49,12 @@ export function AdminSidebar({ className }: SidebarProps) {
             icon: AlertTriangle,
             href: "/admin/moderation",
             active: pathname === "/admin/moderation",
+        },
+        {
+            label: "Marketplace",
+            icon: ShoppingBag,
+            href: "/dashboard/marketplace",
+            active: pathname === "/dashboard/marketplace",
         },
         {
             label: "Analytique",

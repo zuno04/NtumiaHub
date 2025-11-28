@@ -10,7 +10,7 @@ export default function AdminLayout({
     children: React.ReactNode
 }) {
     return (
-        <AuthGuard>
+        <AuthGuard requiredRole="admin">
             <div className="flex min-h-screen flex-col">
                 <div className="grid flex-1 md:grid-cols-[240px_1fr]">
                     <aside className="hidden border-r bg-background md:flex flex-col">
