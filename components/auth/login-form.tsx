@@ -59,6 +59,9 @@ export function LoginForm() {
                 description: `Bienvenue, ${user.name}`,
             })
 
+            // Set cookie for middleware
+            document.cookie = `auth_token=${token}; path=/; max-age=86400; SameSite=Strict`
+
             if (user.role === 'admin') {
                 router.push("/admin")
             } else {
@@ -149,7 +152,7 @@ export function LoginForm() {
                             </FormItem>
                         )}
                     />
-                    <a href="#" className="text-sm font-medium text-primary hover:underline">
+                    <a href="/forgot-password" className="text-sm font-medium text-primary hover:underline">
                         Mot de passe oublié ?
                     </a>
                 </div>

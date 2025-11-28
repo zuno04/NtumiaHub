@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { User, MediaOrganization, Notification } from '@/types'
+import { Locale, defaultLocale } from './i18n'
 
 interface AuthState {
     user: User | null
@@ -24,6 +25,11 @@ interface NotificationState {
     markAsRead: (id: string) => void
     markAllAsRead: () => void
     clearNotifications: () => void
+}
+
+interface LanguageState {
+    locale: Locale
+    setLocale: (locale: Locale) => void
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -64,3 +70,15 @@ export const useNotificationStore = create<NotificationState>((set) => ({
     })),
     clearNotifications: () => set({ notifications: [], unreadCount: 0 }),
 }))
+
+export const useLanguageStore = create<LanguageState>()(
+    persist(
+        (set) => ({
+            locale: defaultLocale,
+            setLocale: (locale) => set({ locale }),
+        }),
+        {
+            name: 'language-storage',
+        }
+    )
+)

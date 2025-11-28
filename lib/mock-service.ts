@@ -82,7 +82,7 @@ export const MOCK_CONTENT: Content[] = [
         format: 'mp4',
         fileSize: 1024 * 1024 * 500, // 500MB
         duration: 3600, // 1 hour
-        thumbnail: 'https://images.unsplash.com/photo-1492619879874-3cead6298fbc?w=800&q=80',
+        thumbnail: 'https://picsum.photos/seed/news1/800/450',
         uploadedBy: 'org_1',
         uploadedByUser: 'user_1',
         uploadedAt: subDays(new Date(), 1),
@@ -108,7 +108,7 @@ export const MOCK_CONTENT: Content[] = [
         format: 'mp3',
         fileSize: 1024 * 1024 * 50, // 50MB
         duration: 1800, // 30 mins
-        thumbnail: 'https://images.unsplash.com/photo-1478737270239-2f02b77ac6d5?w=800&q=80',
+        thumbnail: 'https://picsum.photos/seed/audio1/800/450',
         uploadedBy: 'org_2',
         uploadedByUser: 'user_3',
         uploadedAt: subDays(new Date(), 5),
@@ -132,7 +132,7 @@ export const MOCK_CONTENT: Content[] = [
         type: 'document',
         format: 'pdf',
         fileSize: 1024 * 1024 * 5, // 5MB
-        thumbnail: 'https://images.unsplash.com/photo-1568667256549-094345857637?w=800&q=80',
+        thumbnail: 'https://picsum.photos/seed/doc1/800/450',
         uploadedBy: 'org_1',
         uploadedByUser: 'user_2',
         uploadedAt: subDays(new Date(), 10),
@@ -157,7 +157,7 @@ export const MOCK_CONTENT: Content[] = [
         format: 'mp4',
         fileSize: 1024 * 1024 * 200,
         duration: 120,
-        thumbnail: 'https://images.unsplash.com/photo-1545193544-312983719e84?w=800&q=80',
+        thumbnail: 'https://picsum.photos/seed/flood1/800/450',
         uploadedBy: 'org_3',
         uploadedByUser: 'user_4',
         uploadedAt: new Date(),
@@ -180,11 +180,11 @@ export const MockService = {
     login: async (email: string) => {
         // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 1000))
-        
+
         // Determine role based on email
         let role: 'admin' | 'editor' | 'viewer' = 'viewer'
         let name = 'User'
-        
+
         if (email === 'admin@ntumiahub.com') {
             role = 'admin'
             name = 'Admin User'
@@ -198,7 +198,7 @@ export const MockService = {
             role = 'viewer'
             name = 'Viewer User'
         }
-        
+
         const org = MOCK_MEDIA_ORGS.find(o => o.responsible.email === email) || MOCK_MEDIA_ORGS[0]
         const user: User = {
             id: 'user_' + generateId(),
@@ -362,7 +362,7 @@ export const MockService = {
                 contentId: 'content_2',
                 contentTitle: 'Interview Ministre de la Communication',
                 contentType: 'audio',
-                contentThumbnail: 'https://images.unsplash.com/photo-1478737270239-2f02b77ac6d5?w=800&q=80',
+                contentThumbnail: 'https://picsum.photos/seed/audio1/800/450',
                 downloadedBy: mediaId,
                 downloadedByUser: 'user_1',
                 downloadedByUserName: 'Jean Dupont',
@@ -376,7 +376,7 @@ export const MockService = {
                 contentId: 'content_1',
                 contentTitle: 'Journal 20h - Edition Spéciale',
                 contentType: 'video',
-                contentThumbnail: 'https://images.unsplash.com/photo-1492619879874-3cead6298fbc?w=800&q=80',
+                contentThumbnail: 'https://picsum.photos/seed/news1/800/450',
                 downloadedBy: mediaId,
                 downloadedByUser: 'user_2',
                 downloadedByUserName: 'Marie User',

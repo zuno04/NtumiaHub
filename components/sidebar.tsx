@@ -17,10 +17,11 @@ import {
     Globe,
     LogOut
 } from "lucide-react"
-import { useAuthStore } from "@/lib/store"
+import { useAuthStore, useLanguageStore } from "@/lib/store"
 import { useRouter } from "next/navigation"
 import { UploadModal } from "@/components/upload-modal"
 import { usePermissions } from "@/hooks/use-permissions"
+import { getTranslation } from "@/lib/i18n"
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> { }
 
@@ -29,40 +30,42 @@ export function Sidebar({ className }: SidebarProps) {
     const { logout, user } = useAuthStore()
     const router = useRouter()
     const permissions = usePermissions(user?.role || 'viewer')
+    const { locale } = useLanguageStore()
+    const t = getTranslation(locale)
 
     const routes = [
         {
-            label: "Vue d'ensemble",
+            label: t.nav.dashboard,
             icon: LayoutDashboard,
             href: "/dashboard",
             active: pathname === "/dashboard",
         },
         {
-            label: "Marketplace",
+            label: t.nav.marketplace,
             icon: ShoppingBag,
             href: "/dashboard/marketplace",
             active: pathname === "/dashboard/marketplace",
         },
         ...(permissions.canUpload ? [{
-            label: "Mes Uploads",
+            label: t.nav.uploads,
             icon: Upload,
             href: "/dashboard/uploads",
             active: pathname === "/dashboard/uploads",
         }] : []),
         ...(permissions.canManageUsers ? [{
-            label: "Mon Équipe",
+            label: t.nav.team,
             icon: Users,
             href: "/dashboard/team",
             active: pathname === "/dashboard/team",
         }] : []),
         {
-            label: "Historique",
+            label: t.nav.history,
             icon: History,
             href: "/dashboard/history",
             active: pathname === "/dashboard/history",
         },
         {
-            label: "Paramètres",
+            label: t.nav.settings,
             icon: Settings,
             href: "/dashboard/settings",
             active: pathname === "/dashboard/settings",
@@ -92,7 +95,7 @@ export function Sidebar({ className }: SidebarProps) {
                             <UploadModal>
                                 <Button className="w-full shadow-lg hover:shadow-xl transition-all">
                                     <Upload className="mr-2 h-4 w-4" />
-                                    Nouveau Upload
+                                    {locale === 'fr' ? 'Nouveau Upload' : 'New Upload'}
                                 </Button>
                             </UploadModal>
                         </div>
@@ -122,7 +125,7 @@ export function Sidebar({ className }: SidebarProps) {
                         onClick={handleLogout}
                     >
                         <LogOut className="mr-2 h-4 w-4" />
-                        Déconnexion
+                        {locale === 'fr' ? 'Déconnexion' : 'Logout'}
                     </Button>
                 </div>
             </div>

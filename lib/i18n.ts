@@ -1,48 +1,52 @@
 export const locales = ['en', 'fr'] as const;
 export type Locale = typeof locales[number];
 
-export const defaultLocale: Locale = 'en';
+export const defaultLocale: Locale = 'fr';
 
 export const translations = {
   en: {
-    nav: {
-      dashboard: 'Dashboard',
-      marketplace: 'Marketplace',
-      team: 'Team',
-      uploads: 'Uploads',
-      history: 'History',
-      settings: 'Settings'
+    auth: {
+      loginTitle: 'Login to your space', loginSubtitle: 'Enter your credentials to access the dashboard', signupTitle: 'Create a media account', signupSubtitle: 'Join the inter-media content sharing platform',
+      email: 'Professional Email', password: 'Password', newPassword: 'New Password', confirmPassword: 'Confirm Password', rememberMe: 'Remember me', forgotPassword: 'Forgot password?',
+      login: 'Sign in', signup: 'Create account', loggingIn: 'Signing in...', signingUp: 'Creating account...', updating: 'Updating...',
+      noAccount: "Don't have an account?", hasAccount: 'Already have an account?', createMediaAccount: 'Create a media account', backToLogin: 'Back to login',
+      forgotPasswordTitle: 'Forgot password?', forgotPasswordSubtitle: 'Enter your email to receive a reset link', resetPasswordTitle: 'New password', resetPasswordSubtitle: 'Choose a secure password for your account',
+      sendLink: 'Send link', sending: 'Sending...', resetPassword: 'Reset password', emailSent: 'Email sent!', checkInbox: 'Check your inbox (and spam) for reset instructions', resendEmail: 'Resend email',
+      organizationName: 'Organization Name', organizationType: 'Organization Type', responsibleName: 'Responsible Person Name', responsibleEmail: 'Responsible Email', responsiblePhone: 'Responsible Phone', description: 'Description', continueWith: 'Or continue with',
+      loginSuccess: 'Login successful', welcome: 'Welcome', loginError: 'Login error', invalidCredentials: 'Invalid email or password',
+      validEmail: 'Please enter a valid email address', passwordMinLength: 'Password must be at least 6 characters', passwordsMatch: 'Passwords must match',
     },
-    common: {
-      search: 'Search',
-      filter: 'Filter',
-      upload: 'Upload',
-      download: 'Download',
-      delete: 'Delete',
-      edit: 'Edit',
-      save: 'Save',
-      cancel: 'Cancel'
-    }
+    nav: { dashboard: 'Dashboard', marketplace: 'Marketplace', team: 'Team', uploads: 'Uploads', history: 'History', settings: 'Settings', profile: 'Profile', notifications: 'Notifications', analytics: 'Analytics', admin: 'Admin', users: 'Users', validations: 'Validations', moderation: 'Moderation', logs: 'Logs' },
+    common: { search: 'Search', searchPlaceholder: 'Search...', filter: 'Filter', upload: 'Upload', download: 'Download', delete: 'Delete', edit: 'Edit', save: 'Save', cancel: 'Cancel', loading: 'Loading...', noResults: 'No results found', viewAll: 'View all', close: 'Close', confirm: 'Confirm', back: 'Back', next: 'Next', previous: 'Previous', actions: 'Actions', status: 'Status', date: 'Date', type: 'Type', size: 'Size', language: 'Language', title: 'Title', description: 'Description', category: 'Category', license: 'License', downloads: 'Downloads', views: 'Views', details: 'Details', relatedContent: 'Related Content' },
+    dashboard: { welcome: 'Welcome', overview: 'Overview', totalUploads: 'Total Uploads', totalDownloads: 'Total Downloads', storageUsed: 'Storage Used', activeUsers: 'Active Users', recentActivity: 'Recent Activity', quickActions: 'Quick Actions', uploadContent: 'Upload Content', newUpload: 'New Upload', browseMarketplace: 'Browse Marketplace', manageTeam: 'Manage Team', viewAnalytics: 'View Analytics' },
+    marketplace: { title: 'Marketplace', subtitle: 'Discover and download content', searchPlaceholder: 'Search content...', allTypes: 'All Types', allCategories: 'All Categories', sortBy: 'Sort by', newest: 'Newest', oldest: 'Oldest', mostDownloaded: 'Most Downloaded', gridView: 'Grid View', listView: 'List View' },
+    upload: { title: 'Upload Content', dragDrop: 'Drag and drop your file here, or click to browse', fileSelected: 'File selected', metadata: 'Metadata', contentTitle: 'Content Title', contentDescription: 'Description', contentType: 'Content Type', contentLanguage: 'Language', license: 'License', uploading: 'Uploading...', uploadSuccess: 'Upload successful' },
+    settings: { title: 'Settings', general: 'General', notifications: 'Notifications', security: 'Security', appearance: 'Appearance', darkMode: 'Dark Mode', timezone: 'Timezone', searchTimezone: 'Search timezone...', emailNotifications: 'Email Notifications', pushNotifications: 'Push Notifications', changePassword: 'Change Password', currentPassword: 'Current Password', twoFactor: 'Two-Factor Authentication', saveChanges: 'Save Changes', settingsSaved: 'Settings saved successfully' },
+    profile: { title: 'Profile', personalInfo: 'Personal Information', name: 'Name', email: 'Email', role: 'Role', notificationPreferences: 'Notification Preferences', emailNotifications: 'Email Notifications', pushNotifications: 'Push Notifications' },
+    admin: { users: 'Users', manageUsers: 'Manage user accounts and permissions', addAdmin: 'Add Admin', searchUser: 'Search user...', user: 'User', lastLogin: 'Last Login', promoteAdmin: 'Promote to Admin', deactivateAccount: 'Deactivate Account', copyEmail: 'Copy Email', validations: 'Validations', manageValidations: 'Manage registration requests and pending content', media: 'Media', content: 'Content', noPendingRequests: 'No pending registration requests', noPendingContent: 'No pending content for validation', responsible: 'Responsible', uploadedBy: 'Uploaded by', approve: 'Approve', reject: 'Reject', view: 'View', moderation: 'Moderation', manageReports: 'Manage reports and content', logs: 'System Logs', systemLogs: 'Activity logs and system events', recentLogs: 'Recent Logs', analytics: 'Analytics', platformMetrics: 'Platform statistics and metrics', activeUsers: 'Active Users', contentUploaded: 'Content Uploaded', growth: 'Growth', recentActivity: 'Recent Activity', settings: 'Admin Settings', systemSettings: 'System Settings', maxUploadSize: 'Max Upload Size (MB)', storageLimit: 'Storage Limit (GB)', autoApprove: 'Auto-approve uploads', userManagement: 'User Management', allowRegistration: 'Allow new registrations', requireEmailVerify: 'Require email verification', updateSettings: 'Update User Settings' },
+    hero: { tagline: 'The central platform for media content exchange in Cameroon. Connect with TV channels, radio stations, and press in real-time.', team: 'Digital Innova Team' },
   },
   fr: {
-    nav: {
-      dashboard: 'Tableau de bord',
-      marketplace: 'Marché',
-      team: 'Équipe',
-      uploads: 'Téléchargements',
-      history: 'Historique',
-      settings: 'Paramètres'
+    auth: {
+      loginTitle: 'Connexion à votre espace', loginSubtitle: 'Entrez vos identifiants pour accéder au dashboard', signupTitle: 'Créer un compte média', signupSubtitle: 'Rejoignez la plateforme de partage de contenus inter-médias',
+      email: 'Email Professionnel', password: 'Mot de passe', newPassword: 'Nouveau mot de passe', confirmPassword: 'Confirmer le mot de passe', rememberMe: 'Se souvenir de moi', forgotPassword: 'Mot de passe oublié ?',
+      login: 'Se connecter', signup: 'Créer un compte', loggingIn: 'Connexion en cours...', signingUp: 'Création du compte...', updating: 'Mise à jour...',
+      noAccount: "Vous n'avez pas de compte ?", hasAccount: 'Vous avez déjà un compte ?', createMediaAccount: 'Créer un compte média', backToLogin: 'Retour à la connexion',
+      forgotPasswordTitle: 'Mot de passe oublié ?', forgotPasswordSubtitle: 'Entrez votre adresse email pour recevoir un lien de réinitialisation', resetPasswordTitle: 'Nouveau mot de passe', resetPasswordSubtitle: 'Choisissez un mot de passe sécurisé pour votre compte',
+      sendLink: 'Envoyer le lien', sending: 'Envoi en cours...', resetPassword: 'Réinitialiser le mot de passe', emailSent: 'Email envoyé !', checkInbox: 'Vérifiez votre boîte de réception (et vos spams) pour les instructions de réinitialisation', resendEmail: "Renvoyer l'email",
+      organizationName: "Nom de l'organisation", organizationType: "Type d'organisation", responsibleName: 'Nom du responsable', responsibleEmail: 'Email du responsable', responsiblePhone: 'Téléphone du responsable', description: 'Description', continueWith: 'Ou continuer avec',
+      loginSuccess: 'Connexion réussie', welcome: 'Bienvenue', loginError: 'Erreur de connexion', invalidCredentials: 'Email ou mot de passe incorrect',
+      validEmail: 'Veuillez entrer une adresse email valide', passwordMinLength: 'Le mot de passe doit contenir au moins 6 caractères', passwordsMatch: 'Les mots de passe doivent correspondre',
     },
-    common: {
-      search: 'Rechercher',
-      filter: 'Filtrer',
-      upload: 'Télécharger',
-      download: 'Télécharger',
-      delete: 'Supprimer',
-      edit: 'Modifier',
-      save: 'Enregistrer',
-      cancel: 'Annuler'
-    }
+    nav: { dashboard: 'Tableau de bord', marketplace: 'Marché', team: 'Équipe', uploads: 'Téléchargements', history: 'Historique', settings: 'Paramètres', profile: 'Profil', notifications: 'Notifications', analytics: 'Analytique', admin: 'Admin', users: 'Utilisateurs', validations: 'Validations', moderation: 'Modération', logs: 'Logs' },
+    common: { search: 'Rechercher', searchPlaceholder: 'Rechercher...', filter: 'Filtrer', upload: 'Télécharger', download: 'Télécharger', delete: 'Supprimer', edit: 'Modifier', save: 'Enregistrer', cancel: 'Annuler', loading: 'Chargement...', noResults: 'Aucun résultat trouvé', viewAll: 'Voir tout', close: 'Fermer', confirm: 'Confirmer', back: 'Retour', next: 'Suivant', previous: 'Précédent', actions: 'Actions', status: 'Statut', date: 'Date', type: 'Type', size: 'Taille', language: 'Langue', title: 'Titre', description: 'Description', category: 'Catégorie', license: 'Licence', downloads: 'Téléchargements', views: 'Vues', details: 'Détails', relatedContent: 'Contenu Associé' },
+    dashboard: { welcome: 'Bienvenue', overview: 'Aperçu', totalUploads: 'Total Uploads', totalDownloads: 'Total Téléchargements', storageUsed: 'Stockage Utilisé', activeUsers: 'Utilisateurs Actifs', recentActivity: 'Activité Récente', quickActions: 'Actions Rapides', uploadContent: 'Uploader du Contenu', newUpload: 'Nouveau Upload', browseMarketplace: 'Parcourir le Marché', manageTeam: "Gérer l'Équipe", viewAnalytics: "Voir l'Analytique" },
+    marketplace: { title: 'Marché', subtitle: 'Découvrez et téléchargez du contenu', searchPlaceholder: 'Rechercher des contenus...', allTypes: 'Tous les Types', allCategories: 'Toutes les Catégories', sortBy: 'Trier par', newest: 'Plus récent', oldest: 'Plus ancien', mostDownloaded: 'Plus téléchargé', gridView: 'Vue Grille', listView: 'Vue Liste' },
+    upload: { title: 'Uploader du Contenu', dragDrop: 'Glissez-déposez votre fichier ici, ou cliquez pour parcourir', fileSelected: 'Fichier sélectionné', metadata: 'Métadonnées', contentTitle: 'Titre du Contenu', contentDescription: 'Description', contentType: 'Type de Contenu', contentLanguage: 'Langue', license: 'Licence', uploading: 'Upload en cours...', uploadSuccess: 'Upload réussi' },
+    settings: { title: 'Paramètres', general: 'Général', notifications: 'Notifications', security: 'Sécurité', appearance: 'Apparence', darkMode: 'Mode Sombre', timezone: 'Fuseau Horaire', searchTimezone: 'Rechercher un fuseau horaire...', emailNotifications: 'Notifications Email', pushNotifications: 'Notifications Push', changePassword: 'Changer le Mot de Passe', currentPassword: 'Mot de passe actuel', twoFactor: 'Authentification à Deux Facteurs', saveChanges: 'Enregistrer les modifications', settingsSaved: 'Paramètres enregistrés avec succès' },
+    profile: { title: 'Profil', personalInfo: 'Informations Personnelles', name: 'Nom', email: 'Email', role: 'Rôle', notificationPreferences: 'Préférences de Notification', emailNotifications: 'Notifications Email', pushNotifications: 'Notifications Push' },
+    admin: { users: 'Utilisateurs', manageUsers: 'Gérez les comptes utilisateurs et leurs permissions', addAdmin: 'Ajouter un admin', searchUser: 'Rechercher un utilisateur...', user: 'Utilisateur', lastLogin: 'Dernière connexion', promoteAdmin: 'Promouvoir Admin', deactivateAccount: 'Désactiver le compte', copyEmail: "Copier l'email", validations: 'Validations', manageValidations: "Gérez les demandes d'inscription et les contenus en attente de validation", media: 'Médias', content: 'Contenus', noPendingRequests: "Aucune demande d'inscription en attente", noPendingContent: 'Aucun contenu en attente de validation', responsible: 'Responsable', uploadedBy: 'Uploadé par', approve: 'Valider', reject: 'Rejeter', view: 'Voir', moderation: 'Modération', manageReports: 'Gérer les signalements et contenus', logs: 'Logs Système', systemLogs: "Journaux d'activité et événements système", recentLogs: 'Logs Récents', analytics: 'Analytique', platformMetrics: 'Statistiques et métriques de la plateforme', activeUsers: 'Utilisateurs Actifs', contentUploaded: 'Contenu Uploadé', growth: 'Croissance', recentActivity: 'Activité Récente', settings: 'Admin Settings', systemSettings: 'System Settings', maxUploadSize: 'Max Upload Size (MB)', storageLimit: 'Storage Limit (GB)', autoApprove: 'Auto-approve uploads', userManagement: 'User Management', allowRegistration: 'Allow new registrations', requireEmailVerify: 'Require email verification', updateSettings: 'Update User Settings' },
+    hero: { tagline: "La plateforme centrale pour l'échange de contenus médias au Cameroun. Connectez-vous avec les chaînes TV, radios et presse en temps réel.", team: 'Digital Innova Team' },
   }
 } as const;
 

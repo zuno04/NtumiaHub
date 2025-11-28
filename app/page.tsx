@@ -4,13 +4,20 @@ import Link from "next/link"
 import { motion } from "framer-motion"
 import { LoginForm } from "@/components/auth/login-form"
 import { ThemeSwitcher } from "@/components/theme-switcher"
+import { LanguageSwitcher } from "@/components/language-switcher"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Globe, Radio, Tv, Newspaper } from "lucide-react"
+import { useLanguageStore } from "@/lib/store"
+import { getTranslation } from "@/lib/i18n"
 
 export default function LoginPage() {
+  const { locale } = useLanguageStore()
+  const t = getTranslation(locale)
+
   return (
     <div className="container relative h-screen flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">
-      <div className="absolute right-4 top-4 md:right-8 md:top-8 z-50">
+      <div className="absolute right-4 top-4 md:right-8 md:top-8 z-50 flex gap-2">
+        <LanguageSwitcher />
         <ThemeSwitcher />
       </div>
 
@@ -38,10 +45,9 @@ export default function LoginPage() {
             className="space-y-2"
           >
             <p className="text-lg">
-              &ldquo;La plateforme centrale pour l'échange de contenus médias au Cameroun.
-              Connectez-vous avec les chaînes TV, radios et presse en temps réel.&rdquo;
+              &ldquo;{t.hero.tagline}&rdquo;
             </p>
-            <footer className="text-sm">Digital Innova Team</footer>
+            <footer className="text-sm">{t.hero.team}</footer>
           </motion.blockquote>
 
           <motion.div
@@ -57,7 +63,7 @@ export default function LoginPage() {
               <Radio className="h-4 w-4" /> Radio
             </div>
             <div className="flex items-center gap-2 text-sm text-white/80">
-              <Newspaper className="h-4 w-4" /> Presse
+              <Newspaper className="h-4 w-4" /> {locale === 'fr' ? 'Presse' : 'Press'}
             </div>
           </motion.div>
         </div>
@@ -67,22 +73,22 @@ export default function LoginPage() {
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col space-y-2 text-center">
             <h1 className="text-2xl font-semibold tracking-tight">
-              Connexion à votre espace
+              {t.auth.loginTitle}
             </h1>
             <p className="text-sm text-muted-foreground">
-              Entrez vos identifiants pour accéder au dashboard
+              {t.auth.loginSubtitle}
             </p>
           </div>
 
           <LoginForm />
 
           <p className="px-8 text-center text-sm text-muted-foreground">
-            Vous n'avez pas de compte ?{" "}
+            {t.auth.noAccount}{" "}
             <Link
               href="/signup"
               className="underline underline-offset-4 hover:text-primary"
             >
-              Créer un compte média
+              {t.auth.createMediaAccount}
             </Link>
           </p>
         </div>

@@ -3,6 +3,7 @@
 import { User as UserIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ThemeSwitcher } from "@/components/theme-switcher"
+import { LanguageSwitcher } from "@/components/language-switcher"
 import { NotificationsDropdown } from "@/components/notifications-dropdown"
 import { MobileSidebar } from "@/components/sidebar"
 import { GlobalSearch } from "@/components/global-search"
@@ -15,12 +16,15 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { useAuthStore } from "@/lib/store"
+import { useAuthStore, useLanguageStore } from "@/lib/store"
 import { useRouter } from "next/navigation"
+import { getTranslation } from "@/lib/i18n"
 
 export function Topbar() {
     const { user, logout } = useAuthStore()
     const router = useRouter()
+    const { locale } = useLanguageStore()
+    const t = getTranslation(locale)
 
     const handleLogout = () => {
         logout()
@@ -34,6 +38,7 @@ export function Topbar() {
 
                 <div className="ml-auto flex items-center space-x-4">
                     <GlobalSearch />
+                    <LanguageSwitcher />
                     <ThemeSwitcher />
 
                     <NotificationsDropdown />
@@ -59,10 +64,10 @@ export function Topbar() {
                             <DropdownMenuSeparator />
                             <DropdownMenuItem onClick={() => router.push('/dashboard/profile')}>
                                 <UserIcon className="mr-2 h-4 w-4" />
-                                <span>Profil</span>
+                                <span>{t.nav.profile}</span>
                             </DropdownMenuItem>
                             <DropdownMenuItem onClick={handleLogout} className="text-destructive">
-                                Déconnexion
+                                {locale === 'fr' ? 'Déconnexion' : 'Logout'}
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
